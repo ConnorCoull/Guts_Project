@@ -1,9 +1,9 @@
 from django.urls import path
-from gtrgtrapp import views
+from .views import IndexView
 
 app_name = 'gtrgtrapp'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', IndexView.as_view(), name='index'),
 ]
 
