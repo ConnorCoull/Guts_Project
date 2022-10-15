@@ -1,5 +1,6 @@
 //Get the button
 let mybutton = document.getElementById("myBtn");
+let arrowbutton = document.getElementById("arrowBtn");
 
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
@@ -17,3 +18,13 @@ function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+
+
+//Scroll down function
+function scrollDown(){
+  window.scrollBy(0, 100)
+  console.log("worked")
+}
+
+
+arrowbutton.addEventListener("click", scrollDown());

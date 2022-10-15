@@ -56,12 +56,18 @@ home, html {
     margin-top:75px;
     margin-left: auto;
     margin-right: auto;
+    scroll-behavior: smooth;
   }
   
 .arrow:hover {
     box-shadow: 0 0 2px 1px #5fd0e4;
-    object-position: 0px - 140px;
   }
+
+
+#button{
+    position: fixed;
+    transition: top 0.3s;
+}
 
 
   .myBtn {
