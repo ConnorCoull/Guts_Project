@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-{% load staticfiles %}
+{% load static %}
 
 <html>
     <head>
@@ -34,7 +34,7 @@
         </div>
         <div class="container-fluid darkblue">
             <h1> Guitar Scroll </h1>
-            {% if guitar %}
+            {% if guitars %}
             <div class="list">
                 {% for guitar in guitars %}
                     <div class="card mb-3">
@@ -65,9 +65,9 @@
     jQuery(function ($) {
         var $list = $('.book-list');
         $list.jscroll({
-            loadingHtml: '<div class="text-center">' +
-                '<img src="{% static 'loading.gif' %}" alt="Loading" />' +
-                '</div>',
+            loadingHtml: `<div class="text-center">` +
+                `<img src="{% static 'loading.gif' %}" alt="Loading" />` +
+                `</div>`,
             padding: 100,
             pagingSelector: '.pagination',
             nextSelector: 'a.next-page:last',
