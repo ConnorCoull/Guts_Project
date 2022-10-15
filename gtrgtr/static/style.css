@@ -1,0 +1,12 @@
+home, html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    background-color: #ffffff;
+}
+
+/* create a class called 'red' that makes the background red */
+.red {
+    background-color: red;
+}
