@@ -10,3 +10,11 @@ home, html {
 .red {
     background-color: red;
 }
+
+.fulllength {
+    height: 100vh;
+}
+
+.blue {
+    background-color: blue;
+}
