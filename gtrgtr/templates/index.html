@@ -43,7 +43,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ guitar.itemName }}</h5>
-                            <p class="card-text">{{ guitar.description }}</p>
+                            <p class="card-text">{{ guitar.description | safe }}</p>
                             <p class="card-text"><small class="text-muted">{{ guitar.brandName }}</small></p>
                         </div>
                     </div>
