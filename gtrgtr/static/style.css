@@ -1,62 +1,67 @@
-home, html {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    color: #333333;
+home,
+html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
 }
 
 .darkblue {
-    background-color: #1e3242;
+  background-color: #1e3242;
 }
 
 .fulllength {
-    height: 100vh;
+  height: 100vh;
 }
 
-
-.title{
-    color:#5fd0e4;
-
+.title {
+  color: #5fd0e4;
 }
 
-.home{
-    background-color: #16232D;
+.home {
+  background-color: #16232d;
 }
 
-
-.centre{
-    /* centres div*/
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 439px;
+.centre {
+  /* centres div*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 439px;
 }
 
-
-/*displays logo to homepage */  
-.logo{
-    content:url(logo.jpg);
-    display: block;
-    height:130px;
-    margin-top:150px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+/*displays logo to homepage */
+.logo {
+  content: url(logo.jpg);
+  display: block;
+  height: 130px;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
+.guitar-box {
+  width: 25vw;
+  height: auto;
+}
+
+.guitar-image {
+  transform: rotate(270deg);
+}
 
 /*aligns logo image on page */
-.arrow{
-    content:url(arrow.jpg);
-    display: block;
-    height:200px;
-    margin-top:75px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+.arrow {
+  content: url(arrow.jpg);
+  display: block;
+  height: 200px;
+  margin-top: 75px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .arrow:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-  }
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}

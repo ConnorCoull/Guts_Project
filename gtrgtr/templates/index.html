@@ -38,7 +38,9 @@
             <div class="list">
                 {% for guitar in guitars %}
                     <div class="card mb-3">
-                        <img src="{{ guitar.pictureMain }}" class="card-img-top" alt="Picture of a guitar">
+                        <div class="guitar-box">
+                            <img src="{{ guitar.pictureMain }}" class="card-img-top guitar-image" alt="Picture of a guitar">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ guitar.itemName }}</h5>
                             <p class="card-text">{{ guitar.description }}</p>
