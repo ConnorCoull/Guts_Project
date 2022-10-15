@@ -61,6 +61,35 @@ pickup = {
     11: 'H'
 }
 
+category = {
+    'GU': 'Guitars',
+    'GUAG': 'Acoustics',
+    'GUAGCC_1': 'Classical Guitar',
+    'GUAGCC_lh': 'Left Handed Classicals',
+    'GUBA': 'Basses',
+    'GUEG': 'Electrics',
+    'GUAG_1': '6 String Acoustics',
+    'GUAG_2': '12 String Acoustics',
+    'GUAG_BG': 'Beginners',
+    'GUAG_lh': 'Left handed Acoustics',
+    'GUBA_1': 'Solid Body Basses',
+    'GUBA_14': '4 String Basses',
+    'GUBA_15': '5 String Basses',
+    'GUBA_16': '6 String Basses',
+    'GUBA_2': 'Acoustic Basses',
+    'GUBA_3': 'Fretless Basses',
+    'GUBA_BG': 'Beginners',
+    'GUBA_lh': 'Left handed Basses',
+    'GUBASS': 'Short Scale Basses',
+    'GUEG_1': 'Solid Body Electrics',
+    'GUEG_2': 'Semi Acoustic Electrics',
+    'GUEG_34': '3/4 Sized',
+    'GUEG_7': '7 String Electrics',
+    'GUEG_8': '8 String Electrics',
+    'GUEG_BG': 'Beginners',
+    'GUEG_lh': 'Left Handed Electrics'
+}
+
 
 def getGtrGtrObjects():
     gtrgtrGtrsUrl = "https://services.guitarguitar.co.uk/WebService/api/hackathon/guitars"
@@ -74,15 +103,15 @@ def getGtrGtrObjects():
     gtrgtrSongsJson = songsResponse.json()
     return gtrgtrJson, gtrgtrSongsJson
 
+
 def getSpotifyURL(spotifyID):
     return sp.track(spotifyID)['preview_url']
-    
+
+
 def consolidateGtrsAndSongs(gtrsObjects, gtrsSongsObjects):
     consolObjects = []
     for gtr in gtrsObjects:
-    for i in range(0, finalIndex):
         finalObject = {}
-        gtr = gtrsObjects[i]
         for gtrSong in gtrsSongsObjects:
             if gtr['skU_ID'] == gtrSong['skU_ID'] and (gtrSong['spotifyId'] != None and gtrSong['spotifyId'] != ""):
                 trimmedSpotifyID = gtrSong['spotifyId'].split('?')[0]
@@ -90,6 +119,7 @@ def consolidateGtrsAndSongs(gtrsObjects, gtrsSongsObjects):
                 break
         finalObject['itemName'] = gtr['itemName']
         finalObject['title'] = gtr['title']
+        finalObject['category'] = gtr['category']
         finalObject['brandName'] = gtr['brandName']
         finalObject['description'] = gtr['description']
         finalObject['salesPrice'] = gtr['salesPrice']
@@ -111,15 +141,37 @@ def enumEnricher(consolObjects):
         currentBodyShape = guitar['bodyShape']
         currentColour = guitar['colour']
         currentPickup = guitar['pickup']
+        currentCategory = guitar['category']
         guitar['bodyShape'] = bodyShapes[currentBodyShape]
-        guitar['colour'] = bodyShapes[currentColour]
-        guitar['pickup'] = bodyShapes[currentPickup]
+        guitar['colour'] = colour[currentColour]
+        guitar['pickup'] = pickup[currentPickup]
+        guitar['category'] = category[currentCategory]
         newObjects.append(guitar)
         print(guitar)
     return newObjects
 
 
 if __name__ == "__main__":
-    gtrgtrJSON, gtrSongsJSON = getGtrGtrObjects()
+    # gtrgtrJSON, gtrSongsJSON = getGtrGtrObjects()
+    gtrgtrJSON = [{
+        'skU_ID': "12050912030058",
+        'asn': "885978519156",
+        'category': "GUAG_1",
+        'online': True,
+        'itemName':	"G5013CE Rancher Junior",
+        'title': "",
+        'brandName': "Gretsch",
+        'description': "",
+        'productDetail': "<p>Gretsch presents a darkly alluring take on its classic acoustic model with the G5013CE Rancher™ Jr. With its slick, elegant appointments and onboard electronics, it's a cool and classic performer with a distinctive Gretsch personality all its own.</p>\r\n\r\n",
+        'salesPrice': 349,
+        'pictureMain': "https://images.guitarguitar.co.uk/cdn/large/160/12050912030058f.jpg",
+        'qtyInStock': 1,
+        'qtyOnOrder': 0,
+        'colour': 1,
+        'pickup': 1,
+        'bodyShape': 8,
+        'createdOn': "2022-10-01T14:38:01.9194045+01:00"}]
+    gtrSongsJSON = [{'skU_ID': "12050912030058",
+                    'spotifyId': "08mG3Y1vljYA6bvDt4Wqkj?si=fd4b4b4efce64148"}]
     consolidatedJSON = consolidateGtrsAndSongs(gtrgtrJSON, gtrSongsJSON)
     print(enumEnricher(consolidatedJSON))

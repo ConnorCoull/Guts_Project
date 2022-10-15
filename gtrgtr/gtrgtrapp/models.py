@@ -14,6 +14,7 @@ class Guitars(models.Model):
     qtyInStock = models.IntegerField()
     qtyOnOrder = models.IntegerField()
     colour = models.CharField(max_length=200)
+    category = models.CharField(max_length=200)
     pickup = models.CharField(max_length=200)
     bodyShape = models.CharField(max_length=200)
     spotifyPreviewURL = models.URLField()
