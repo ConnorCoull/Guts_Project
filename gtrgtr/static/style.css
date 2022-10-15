@@ -44,6 +44,7 @@ html {
 }
 
 .guitar-box {
+  align-self: center;
   width: 25vw;
   height: auto;
   display: flex;
@@ -51,6 +52,7 @@ html {
 }
 
 .guitar-image {
+  width: 100%;
   transform: rotate(270deg);
 }
 
