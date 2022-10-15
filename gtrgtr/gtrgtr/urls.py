@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from gtrgtrapp import views
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('gtrgtrapp/', include('gtrgtrapp.urls')),
+    path('', include('gtrgtrapp.urls')),
 ]

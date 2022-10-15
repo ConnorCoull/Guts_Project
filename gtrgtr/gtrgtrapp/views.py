@@ -1,6 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Guitars
+from django.views.generic import ListView
 # Create your views here.
-def index(request):
-    return render(request, 'index.html', {})
+class IndexView(ListView):
+    model = Guitars
+    context_object_name = 'guitars'
+    paginate_by = 21
+    template_name = 'index.html'
 
