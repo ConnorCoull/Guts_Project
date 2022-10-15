@@ -1,11 +1,14 @@
-import requests
-import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import spotipy
+from os import environ
+import django
+import requests
+environ['DJANGO_SETTINGS_MODULE'] = 'gtrgtr.settings'
+django.setup()
 
 # Please run the following lines with the shared client ID and Key (or the Windows equivalent, whatever it may well be)
 # export SPOTIPY_CLIENT_ID='your-spotify-client-id'
 # export SPOTIPY_CLIENT_SECRET='your-spotify-client-secret'
-
 auth_manager = SpotifyClientCredentials()
 sp = spotipy.Spotify(auth_manager=auth_manager)
 
@@ -137,7 +140,6 @@ def consolidateGtrsAndSongs(gtrsObjects, gtrsSongsObjects):
 def enumEnricher(consolObjects):
     newObjects = []
     for guitar in consolObjects:
-        print(guitar)
         currentBodyShape = guitar['bodyShape']
         currentColour = guitar['colour']
         currentPickup = guitar['pickup']
@@ -147,31 +149,27 @@ def enumEnricher(consolObjects):
         guitar['pickup'] = pickup[currentPickup]
         guitar['category'] = category[currentCategory]
         newObjects.append(guitar)
-        print(guitar)
     return newObjects
 
 
+def databaseDumper(guitarObjects):
+    for guitar in guitarObjects:
+        try:
+            g = Guitars.objects.get_or_create(itemName=guitar['itemName'], title=guitar['title'], category=guitar['category'], brandName=guitar['brandName'],
+                                              description=guitar['description'], salesPrice=guitar['salesPrice'],
+                                              pictureMain=guitar['pictureMain'],
+                                              qtyInStock=guitar['qtyInStock'], qtyOnOrder=guitar['qtyOnOrder'], colour=guitar['colour'],
+                                              pickup=guitar['pickup'], bodyShape=guitar['bodyShape'],
+                                              online=guitar['online'])[0]
+            g.save()
+            print(guitar['itemName'] + "added to database")
+        except:
+            print("FUUUUUUUUUUUUUUUUCK")
+
+
 if __name__ == "__main__":
-    # gtrgtrJSON, gtrSongsJSON = getGtrGtrObjects()
-    gtrgtrJSON = [{
-        'skU_ID': "12050912030058",
-        'asn': "885978519156",
-        'category': "GUAG_1",
-        'online': True,
-        'itemName':	"G5013CE Rancher Junior",
-        'title': "",
-        'brandName': "Gretsch",
-        'description': "",
-        'productDetail': "<p>Gretsch presents a darkly alluring take on its classic acoustic model with the G5013CE Rancher™ Jr. With its slick, elegant appointments and onboard electronics, it's a cool and classic performer with a distinctive Gretsch personality all its own.</p>\r\n\r\n",
-        'salesPrice': 349,
-        'pictureMain': "https://images.guitarguitar.co.uk/cdn/large/160/12050912030058f.jpg",
-        'qtyInStock': 1,
-        'qtyOnOrder': 0,
-        'colour': 1,
-        'pickup': 1,
-        'bodyShape': 8,
-        'createdOn': "2022-10-01T14:38:01.9194045+01:00"}]
-    gtrSongsJSON = [{'skU_ID': "12050912030058",
-                    'spotifyId': "08mG3Y1vljYA6bvDt4Wqkj?si=fd4b4b4efce64148"}]
+    from gtrgtrapp.models import Guitars
+    gtrgtrJSON, gtrSongsJSON = getGtrGtrObjects()
     consolidatedJSON = consolidateGtrsAndSongs(gtrgtrJSON, gtrSongsJSON)
-    print(enumEnricher(consolidatedJSON))
+    enrichedJSON = enumEnricher(consolidatedJSON)
+    databaseDumper(enrichedJSON)

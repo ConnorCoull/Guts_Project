@@ -1,7 +1,4 @@
-from unittest.util import _MAX_LENGTH
 from django.db import models
-
-# Create your models here.
 
 
 class Guitars(models.Model):
@@ -12,6 +9,8 @@ class Guitars(models.Model):
     salesPrice = models.IntegerField()
     pictureMain = models.URLField()
     qtyInStock = models.IntegerField()
+    online = models.BooleanField(default=False)
+    title = models.CharField(max_length=200, default='I-Am-A-Guitar')
     qtyOnOrder = models.IntegerField()
     colour = models.CharField(max_length=200)
     category = models.CharField(max_length=200)
@@ -20,4 +19,4 @@ class Guitars(models.Model):
     spotifyPreviewURL = models.URLField()
 
     def __str__(self):
-        return self.itemName
+        return self.itemName + " " + " " + self.pictureMain
