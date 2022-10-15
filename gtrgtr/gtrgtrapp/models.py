@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-'''class Guitars(models.Model):
+class Guitars(models.Model):
     incrementingIndex = models.AutoField(primary_key=True)
     itemName = models.CharField()
     brandName = models.CharField()
@@ -16,4 +16,4 @@ from django.db import models
     spotifyPreviewURL = models.URLField()
 
     def __str__(self):
-        return self.itemName'''
+        return self.itemName
