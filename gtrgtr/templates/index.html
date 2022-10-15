@@ -33,18 +33,18 @@
             </div>
         </div>
         <div class="container-fluid darkblue">
-            <h1> Guitar Scroll </h1>
             {% if guitars %}
             <div class="list">
                 {% for guitar in guitars %}
-                    <div class="card mb-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title small-pad-top small-pad-left">{{ guitar.brandName }} - {{ guitar.itemName }}</h3>
+                            <h5 class="card-subtitle mb-2 text-muted title-padded small-pad-left">£{{ guitar.salesPrice }}</h5>
+                            <!--<p class="card-text">{{ guitar.description | safe }}</p>-->
+                            <!--<p class="card-text"><small class="text-muted">{{ guitar.brandName }}</small></p>-->
+                        </div>
                         <div class="guitar-box">
                             <img src="{{ guitar.pictureMain }}" class="card-img-top guitar-image" alt="Picture of a guitar">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ guitar.itemName }}</h5>
-                            <p class="card-text">{{ guitar.description | safe }}</p>
-                            <p class="card-text"><small class="text-muted">{{ guitar.brandName }}</small></p>
                         </div>
                     </div>
                 {% endfor %}
