@@ -46,6 +46,8 @@ html {
 .guitar-box {
   width: 25vw;
   height: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .guitar-image {
