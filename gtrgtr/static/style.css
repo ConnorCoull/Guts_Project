@@ -46,17 +46,21 @@ html {
 
 .guitar-box {
   align-self: center;
-  width: 25vw;
+  width: 100%;
   height: auto;
   display: flex;
   justify-content: center;
+  max-height: 20vw;
 }
 
 .guitar-image {
-  width: 100%;
+  width: 33%;
   transform: rotate(270deg);
 }
 
+.guitar-card{
+  max-height: 40vw;
+}
 /*aligns logo image on page */
 .arrow{
     content:url(arrow.jpg);
