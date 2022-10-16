@@ -1,3 +1,5 @@
+'use strict';
+
 //Get the button
 let mybutton = document.getElementById("myBtn");
 let arrowbutton = document.getElementById("arrowBtn");

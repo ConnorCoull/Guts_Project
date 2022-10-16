@@ -1,9 +1,19 @@
+from django.shortcuts import render
 from .models import Guitars
-from django.views.generic import ListView
-# Create your views here.
-class IndexView(ListView):
-    model = Guitars
-    context_object_name = 'guitars'
-    paginate_by = 21
-    template_name = 'index.html'
 
+
+def index(request):
+    oldGuitars = Guitars.objects.all()
+    guitars = []
+    guitarTriple = []
+    tripleCount = 0
+    for guitar in oldGuitars:
+        if tripleCount < 3:
+            guitarTriple.append(guitar)
+            tripleCount += 1
+        if tripleCount == 3:
+            guitars.append(guitarTriple)
+            guitarTriple = []
+            tripleCount = 0
+    print(guitars)
+    return render(request, 'index.html', context={'guitars': guitars})

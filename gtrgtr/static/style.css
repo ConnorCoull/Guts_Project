@@ -59,7 +59,8 @@ html {
 }
 
 .guitar-card{
-  max-height: 40vw;
+  height: 40vw;
+  margin-bottom: calc(var(--bs-gutter-x) * .5);
 }
 /*aligns logo image on page */
 .arrow{
