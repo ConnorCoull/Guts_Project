@@ -59,6 +59,10 @@ html {
   transform: rotate(270deg);
 }
 
+.card-title{
+  font-size: 3vw;
+}
+
 .guitar-card{
   height: 40vw;
   margin-bottom: calc(var(--bs-gutter-x));
@@ -155,9 +159,9 @@ html {
 }
 
 .small-pad-top {
-  padding-top: 5vw;
+  padding-top: calc(var(--bs-gutter-x)*.5);
 }
 
 .small-pad-left {
-  padding-left: 5vw;
+  padding-left: calc(var(--bs-gutter-x)*.5);
 }

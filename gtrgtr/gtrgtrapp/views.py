@@ -15,5 +15,4 @@ def index(request):
             guitars.append(guitarTriple)
             guitarTriple = []
             tripleCount = 0
-    print(guitars)
     return render(request, 'index.html', context={'guitars': guitars})
