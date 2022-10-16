@@ -59,6 +59,12 @@
                                     {% endif %}
                                     {% if guitar.online and guitar.qtyInStock > 0 %}
                                         - <i>Order online today</i>
+                                    {% elif guitar.online and guitar.qtyInStock == 1 and guitar.qtyOnOrder > 0 %}
+                                        - <i>Order online today</i>
+                                    {% elif guitar.online and guitar.qtyInStock == 0 and guitar.qtyOnOrder > 0 %}
+                                        - <i>Order online today</i>
+                                    {% else %}
+                                        - <i>Order in store today</i>
                                     {% endif %}
                                 </p>
                                 <ul class="modal-list">
