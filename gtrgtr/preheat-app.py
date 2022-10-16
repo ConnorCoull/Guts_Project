@@ -115,10 +115,10 @@ def consolidateGtrsAndSongs(gtrsObjects, gtrsSongsObjects):
     consolObjects = []
     for gtr in gtrsObjects:
         finalObject = {}
+        finalObject['spotifyId'] = None
         for gtrSong in gtrsSongsObjects:
-            if gtr['skU_ID'] == gtrSong['skU_ID'] and (gtrSong['spotifyId'] != None and gtrSong['spotifyId'] != ""):
-                trimmedSpotifyID = gtrSong['spotifyId'].split('?')[0]
-                finalObject['spotifyId'] = getSpotifyURL(trimmedSpotifyID)
+            if gtr['skU_ID'] == gtrSong['skU_ID']:
+                finalObject['spotifyId'] = gtrSong['spotifyId'].split('?')[0]
                 break
         finalObject['itemName'] = gtr['itemName']
         finalObject['title'] = gtr['title']
@@ -154,17 +154,24 @@ def enumEnricher(consolObjects):
 
 def databaseDumper(guitarObjects):
     for guitar in guitarObjects:
-        try:
+        if guitar['spotifyId'] != None and guitar['spotifyId'] != '':
             g = Guitars.objects.get_or_create(itemName=guitar['itemName'], title=guitar['title'], category=guitar['category'], brandName=guitar['brandName'],
                                               description=guitar['description'], salesPrice=guitar['salesPrice'],
                                               pictureMain=guitar['pictureMain'],
-                                              qtyInStock=guitar['qtyInStock'], qtyOnOrder=guitar['qtyOnOrder'], colour=guitar['colour'],
-                                              pickup=guitar['pickup'], bodyShape=guitar['bodyShape'],
-                                              online=guitar['online'])[0]
-            g.save()
-            print(guitar['itemName'] + "added to database")
-        except:
-            print("FUUUUUUUUUUUUUUUUCK")
+                                              qtyInStock=guitar['qtyInStock'], qtyOnOrder=guitar[
+                'qtyOnOrder'], colour=guitar['colour'],
+                pickup=guitar['pickup'], bodyShape=guitar['bodyShape'],
+                online=guitar['online'], spotifyPreviewURL=guitar['spotifyId'])[0]
+        else:
+            g = Guitars.objects.get_or_create(itemName=guitar['itemName'], title=guitar['title'], category=guitar['category'], brandName=guitar['brandName'],
+                                              description=guitar['description'], salesPrice=guitar['salesPrice'],
+                                              pictureMain=guitar['pictureMain'],
+                                              qtyInStock=guitar['qtyInStock'], qtyOnOrder=guitar[
+                'qtyOnOrder'], colour=guitar['colour'],
+                pickup=guitar['pickup'], bodyShape=guitar['bodyShape'],
+                online=guitar['online'])[0]
+        g.save()
+        print(guitar['itemName'] + "added to database")
 
 
 if __name__ == "__main__":

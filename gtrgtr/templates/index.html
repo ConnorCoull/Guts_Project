@@ -44,7 +44,7 @@
                             <span class="close" onclick="document.getElementById('modal-{{guitar.incrementingIndex}}').style.display='none'">&times;</span>
                             <h3 class="modal-title">{{guitar.brandName}} - {{ guitar.itemName }}</h3>
                             <div class="row">
-                                <div class="col-md">
+                                <div class="col-md" style='text-align: center'>
                                     <img src="{{ guitar.pictureMain }}" alt="" class="modal-img">
                                 </div>
                                 <div class="col-md">
@@ -55,8 +55,12 @@
                                         Out of stock
                                     {% endif %}
                                     {% if guitar.qtyOnOrder > 0 %}
-                                        - {{ guitar.qtyOnOrder }} on the way!</p>
+                                        - {{ guitar.qtyOnOrder }} on the way!
                                     {% endif %}
+                                    {% if guitar.online and guitar.qtyInStock > 0 %}
+                                        - <i>Order online today</i>
+                                    {% endif %}
+                                </p>
                                 <ul class="modal-list">
                                     <li><strong>Model:</strong> {{ guitar.itemName }}</li>
                                     <li><strong>Shape:</strong> {{ guitar.bodyShape }}</li>
@@ -64,9 +68,11 @@
                                     <li><strong>Colour:</strong> {{ guitar.colour }}</li>
                                 </ul>
                                 <p class="card-text">{{ guitar.description | safe }}</p>
+                                {% if guitar.spotifyPreviewURL %} 
+                                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/{{guitar.spotifyPreviewURL}}?theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                                {% endif %}
                                 </div>
                             </div>
-                            <embed src="{{guitar.spotifyPreviewURL}}">
                         </div>
                     </div>
                     <div class="guitar-card col-md-4">
@@ -95,6 +101,7 @@
             </div>
         </div>
         <a class="myBtn" href="#">Back to Top </a>
+        <script src="https://open.spotify.com/embed-podcast/iframe-api/v1" async></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script src="{% static 'script.js' %}"></script>
  <!-- jQuery CDN hosted by Google -->
@@ -114,6 +121,14 @@
             contentSelector: '.card,.pagination'
         });
     });
+    window.onSpotifyIframeApiReady = (IFrameAPI) => {
+                                let element = document.getElementById('embed-iframe');
+                                let options = {
+                                    uri: 'spotify:episode:7makk4oTQel546B0PZlDM5'
+                                    };
+                                let callback = (EmbedController) => {};
+                                IFrameAPI.createController(element, options, callback);
+                                };
 </script>
 </body>
 </html>
