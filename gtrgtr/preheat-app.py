@@ -9,8 +9,8 @@ django.setup()
 # Please run the following lines with the shared client ID and Key (or the Windows equivalent, whatever it may well be)
 # export SPOTIPY_CLIENT_ID='your-spotify-client-id'
 # export SPOTIPY_CLIENT_SECRET='your-spotify-client-secret'
-auth_manager = SpotifyClientCredentials()
-sp = spotipy.Spotify(auth_manager=auth_manager)
+#auth_manager = SpotifyClientCredentials()
+#sp = spotipy.Spotify(auth_manager=auth_manager)
 
 
 bodyShapes = {

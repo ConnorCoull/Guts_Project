@@ -37,7 +37,7 @@ html {
 .logo {
   content: url(logo.jpg);
   display: block;
-  height: 130px;
+  height: auto;
   margin-top: 150px;
   margin-left: auto;
   margin-right: auto;
