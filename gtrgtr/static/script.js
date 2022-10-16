@@ -15,6 +15,11 @@ if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
   }
 }
 
+const openModal = (incrementingIndex) => {
+  console.log("hello there");
+  document.getElementById("myModal" + incrementingIndex).style.display =
+    "block";
+};
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   document.body.scrollTop = 0;
