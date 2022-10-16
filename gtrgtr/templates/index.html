@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="{% static 'style.css' %}" />
         <script>
             const openModal = (incrementingIndex) => {
-                console.log("hello there");
                 document.getElementById("modal-" + incrementingIndex).style.display =
                     "block";
             };
@@ -41,10 +40,32 @@
                 <div class="row">
                     {% for guitar in guitarTriple %}
                     <div id="modal-{{guitar.incrementingIndex}}" class="modal">
-                        <div class="modal-content" style="display: flex">
+                        <div class="container modal-content" style="display: flex">
                             <span class="close" onclick="document.getElementById('modal-{{guitar.incrementingIndex}}').style.display='none'">&times;</span>
-                            <img src="{{ guitar.pictureMain }}" alt="" style="transform:rotate(270deg)" width='auto' height='auto'>
-                            <p class="card-text">{{ guitar.description | safe }}</p>
+                            <h3 class="modal-title">{{guitar.brandName}} - {{ guitar.itemName }}</h3>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <img src="{{ guitar.pictureMain }}" alt="" class="modal-img">
+                                </div>
+                                <div class="col-sm">
+                                <p class="card-text"><strong>£{{ guitar.salesPrice }}</strong> - 
+                                    {% if guitar.qtyInStock > 0%}
+                                        <strong>{{guitar.qtyInStock}}</strong> in stock
+                                    {% else %}
+                                        Out of stock
+                                    {% endif %}
+                                    {% if guitar.qtyOnOrder > 0 %}
+                                        - {{ guitar.qtyOnOrder }} on the way!</p>
+                                    {% endif %}
+                                <ul class="modal-list">
+                                    <li><strong>Model:</strong> {{ guitar.itemName }}</li>
+                                    <li><strong>Shape:</strong> {{ guitar.bodyShape }}</li>
+                                    <li><strong>Category:</strong> {{ guitar.category }}</li>
+                                    <li><strong>Colour:</strong> {{ guitar.colour }}</li>
+                                </ul>
+                                <p class="card-text">{{ guitar.description | safe }}</p>
+                                </div>
+                            </div>
                             <embed src="{{guitar.spotifyPreviewURL}}">
                         </div>
                     </div>
