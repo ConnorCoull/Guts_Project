@@ -153,6 +153,11 @@ html {
   border: 1rem;
 }
 
+a {
+  color: #333333;
+  text-decoration: none;
+}
+
 .modal-img{
     height: 90%;
     width: auto;
