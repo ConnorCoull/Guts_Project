@@ -24,12 +24,13 @@ function topFunction() {
 
 //Scroll down function
 function scrollDown(){
-  window.scrollBy(0, 100)
   console.log("worked")
 }
 
 
-arrowbutton.addEventListener("click", scrollDown());
+arrowbutton.addEventListener("click", function () {
+  window.scrollBy(0, 500)
+});
 
 
 
