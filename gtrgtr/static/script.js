@@ -1,5 +1,3 @@
-'use strict';
-
 //Get the button
 let mybutton = document.getElementById("myBtn");
 let arrowbutton = document.getElementById("arrowBtn");
@@ -15,7 +13,7 @@ if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
   }
 }
 
-const openModal = (incrementingIndex) => {
+const _openModal = (incrementingIndex) => {
   console.log("hello there");
   document.getElementById("myModal" + incrementingIndex).style.display =
     "block";
@@ -26,16 +24,17 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-
-//Scroll down function
-function scrollDown(){
-  console.log("worked")
-}
-
-
+/*
 arrowbutton.addEventListener("click", function () {
+  console.log("arrow button clicked");
   window.scrollBy(0, 500)
 });
+*/
+
+document.querySelector("#arrowBtn").addEventListener("click", function () {
+  window.scrollBy(0, 500)
+});
+
 
 
 
@@ -74,3 +73,4 @@ window.onclick = function(event) {
      }
     }
 }
+
