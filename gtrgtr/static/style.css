@@ -150,11 +150,14 @@ html {
   border: 1px solid #888;
   width: 80vw;
   height: auto;
+  border: 1rem;
 }
 
 .modal-img{
     height: 90%;
     width: auto;
+    max-width: 250px;
+    max-height: 750px;
 }
 
 /* The Close Button */

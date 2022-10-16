@@ -44,10 +44,10 @@
                             <span class="close" onclick="document.getElementById('modal-{{guitar.incrementingIndex}}').style.display='none'">&times;</span>
                             <h3 class="modal-title">{{guitar.brandName}} - {{ guitar.itemName }}</h3>
                             <div class="row">
-                                <div class="col-sm">
+                                <div class="col-md">
                                     <img src="{{ guitar.pictureMain }}" alt="" class="modal-img">
                                 </div>
-                                <div class="col-sm">
+                                <div class="col-md">
                                 <p class="card-text"><strong>£{{ guitar.salesPrice }}</strong> - 
                                     {% if guitar.qtyInStock > 0%}
                                         <strong>{{guitar.qtyInStock}}</strong> in stock
